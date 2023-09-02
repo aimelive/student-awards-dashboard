@@ -1,8 +1,6 @@
 {
   "name": "student-awards",
   "version": "3.3.2",
-  "private": true,
-  "homepage": "https://mcsa.io/",
   "dependencies": {
     "@emotion/cache": "^11.9.3",
     "@emotion/react": "^11.9.3",

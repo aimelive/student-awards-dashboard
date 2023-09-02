@@ -19,7 +19,7 @@ export function getGreeting() {
 export const toastMessage = (message, { isError, isWarning } = {}) => {
   return toast(() => (
     <Alert variant="filled" severity={isError ? 'error' : isWarning ? 'info' : 'success'}>
-      {message}
+      <div dangerouslySetInnerHTML={{ __html: message }}></div>
     </Alert>
   ));
 };
@@ -32,3 +32,23 @@ export function compareObj(obj1, obj2) {
     return acc;
   }, {});
 }
+
+export const seasons = [
+  {
+    value: 'SEASON_1',
+    label: 'Season 1'
+  },
+  {
+    value: 'SEASON_2',
+    label: 'Season 2'
+  },
+  {
+    value: 'SEASON_3',
+    label: 'Season 3'
+  }
+];
+
+export const talents = ['Traditional', 'Singer', 'Dance', 'Fashion'].map((item) => ({
+  value: item,
+  label: item
+}));

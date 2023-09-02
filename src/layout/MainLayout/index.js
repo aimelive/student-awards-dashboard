@@ -18,6 +18,7 @@ import { SET_MENU } from 'store/actions';
 // import { IconChevronRight } from '@tabler/icons';
 import { useUser } from 'providers/UserProvider';
 import Loader from 'ui-component/Loader';
+import { useEffect } from 'react';
 
 // styles
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(({ theme, open }) => ({
@@ -64,10 +65,20 @@ const MainLayout = () => {
   const handleLeftDrawerToggle = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
-  const { user } = useUser();
+  const { user, email } = useUser();
+
+  useEffect(() => {
+    if (!user && email) {
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
+  }, [email, user]);
+
   if (!user) {
     return <Loader />;
   }
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />

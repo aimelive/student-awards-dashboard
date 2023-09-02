@@ -108,17 +108,22 @@ const ProfileSection = () => {
         }}
         icon={
           <Avatar
-            src={user.profile.profilePic}
+            src={user.profile?.profilePic}
             sx={{
               ...theme.typography.mediumAvatar,
               margin: '8px 0 8px 8px !important',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              color: 'white',
+              fontWeight: 'bold',
+              fontSize: 14
             }}
             ref={anchorRef}
             aria-controls={open ? 'menu-list-grow' : undefined}
             aria-haspopup="true"
             color="inherit"
-          />
+          >
+            {user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}
+          </Avatar>
         }
         label={<IconSettings stroke={1.5} size="1.5rem" color={theme.palette.primary.main} />}
         variant="outlined"

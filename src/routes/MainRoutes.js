@@ -5,6 +5,8 @@ import MainLayout from 'layout/MainLayout';
 import Loadable from 'ui-component/Loadable';
 import { AuthWrapper } from 'layout/AuthWrapper';
 import NotFound from 'pages/NotFound';
+import PerformanceDetails from 'pages/PerformanceDetails';
+import ActivityDetails from 'pages/ActivityDetails';
 
 // dashboard routing
 const DashboardPage = Loadable(lazy(() => import('pages/DashboardPage')));
@@ -17,6 +19,7 @@ const UtilsColor = Loadable(lazy(() => import('pages/utilities/Color')));
 const SamplePage = Loadable(lazy(() => import('pages/sample-page')));
 const UsersPage = Loadable(lazy(() => import('pages/UsersPage')));
 const ProfilesPage = Loadable(lazy(() => import('pages/ProfilesPage')));
+const UserDetailsPage = Loadable(lazy(() => import('pages/UserDetailsPage')));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -55,8 +58,25 @@ const MainRoutes = {
       element: <SamplePage />
     },
     {
+      path: 'performances/:id',
+      element: <PerformanceDetails />
+    },
+    {
+      path: 'activities/:id',
+      element: <ActivityDetails />
+    },
+    {
       path: 'users',
-      element: <UsersPage />
+      children: [
+        {
+          path: '',
+          element: <UsersPage />
+        },
+        {
+          path: ':id',
+          element: <UserDetailsPage />
+        }
+      ]
     },
     {
       path: 'profiles',

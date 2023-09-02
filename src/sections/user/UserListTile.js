@@ -12,6 +12,7 @@ import {
   Stack,
   TableCell,
   TableRow,
+  Tooltip,
   Typography
 } from '@mui/material';
 import { IconDotsVertical, IconEdit, IconEye, IconTrash } from '@tabler/icons';
@@ -83,14 +84,16 @@ const UserListTile = ({ user, selectedUser, onCheckBoxClicked, currentUserRole, 
         </TableCell>
 
         <TableCell component="th" scope="row" padding="none">
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Avatar src={profile?.profilePic} sx={{ color: 'white', fontWeight: 'bold' }}>
-              {firstName.charAt(0).toUpperCase()}
-            </Avatar>
-            <Typography variant="subtitle1" noWrap>
-              {firstName} {lastName}
-            </Typography>
-          </Stack>
+          <Tooltip title={profile?.username ? `@${profile?.username}` : 'No Profile'}>
+            <Stack direction="row" alignItems="center" spacing={1}>
+              <Avatar src={profile?.profilePic} sx={{ color: 'white', fontWeight: 'bold' }}>
+                {firstName.charAt(0).toUpperCase()}
+              </Avatar>
+              <Typography variant="subtitle1" noWrap sx={{ cursor: 'pointer' }}>
+                {firstName} {lastName}
+              </Typography>
+            </Stack>
+          </Tooltip>
         </TableCell>
 
         <TableCell align="left">
@@ -178,7 +181,7 @@ const UserListTile = ({ user, selectedUser, onCheckBoxClicked, currentUserRole, 
                 {firstName.charAt(0).toUpperCase()}
               </Avatar>
             </ListItemAvatar>
-            <ListItemText primary={`${firstName} ${lastName}`} secondary={profile?.username || email} />
+            <ListItemText primary={`${firstName} ${lastName}`} secondary={profile?.username ? `@${profile?.username}` : email} />
           </ListItem>
         }
       />

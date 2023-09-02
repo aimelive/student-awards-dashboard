@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
   if (token) {
     const isExpired = new Date(expiredAt) < new Date();
     state = {
+      email: user?.email,
       user: isExpired ? null : user,
       error: !user
         ? 'Something went wrong while retrieving user data'

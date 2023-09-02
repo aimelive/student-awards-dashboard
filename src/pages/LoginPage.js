@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // material-ui
 import { useTheme } from '@mui/material/styles';
@@ -10,24 +10,10 @@ import AuthLogin from '../ui-component/login/AuthFormLogin';
 import AuthWrapper1 from '../ui-component/login/AuthWrapper1';
 import Logo from 'ui-component/Logo';
 import AuthFooter from 'ui-component/cards/AuthFooter';
-import { useUser } from 'providers/UserProvider';
-import { useEffect } from 'react';
-import { toastMessage } from 'utils/helpers';
 
 const LoginPage = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down('md'));
-  const { error, user } = useUser();
-  const nav = useNavigate();
-
-  useEffect(() => {
-    if (error) {
-      toastMessage(error, { isError: true });
-    }
-    if (user) {
-      nav('/');
-    }
-  }, [error, user]);
 
   return (
     <AuthWrapper1>

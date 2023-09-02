@@ -13,25 +13,27 @@ const DataWidget = ({ title, isLoading, isError = null, isEmpty, children, custo
   }
   if (isError) {
     return (
-      <Container sx={{ py: 2 }}>
+      <Container sx={{ py: 3 }}>
         <Alert severity="error" variant="outlined">
           <AlertTitle>{isError.error}!</AlertTitle>
-          {isError ? isError.message : 'Oops, Something went wrong due to unknown error. Try to refresh the page and try again.'}
+          <div
+            dangerouslySetInnerHTML={{
+              __html: isError ? isError.message : 'Oops, Something went wrong due to unknown error. Try to refresh the page and try again.'
+            }}
+          />
         </Alert>
       </Container>
     );
   }
   if (isEmpty) {
     return (
-      <Container sx={{ py: 2 }}>
-        <Alert severity="info" variant="outlined">
-          <AlertTitle>No {title ? title?.toLowerCase() : 'items'} found!</AlertTitle>
-          {customEmptyMessage
-            ? customEmptyMessage
-            : `There are no ${title ? title?.toLowerCase() : 'items'} in the
+      <Alert severity="info" variant="outlined" sx={{ backgroundColor: 'white' }}>
+        <AlertTitle>No {title ? title?.toLowerCase() : 'items'} found!</AlertTitle>
+        {customEmptyMessage
+          ? customEmptyMessage
+          : `There are no ${title ? title?.toLowerCase() : 'items'} in the
           system yet! Add new by clicking the button above. ☝️`}
-        </Alert>
-      </Container>
+      </Alert>
     );
   }
   return <>{children}</>;

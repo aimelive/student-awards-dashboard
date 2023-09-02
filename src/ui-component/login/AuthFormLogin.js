@@ -30,10 +30,24 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Fetcher } from 'utils/api';
 import { toastMessage } from 'utils/helpers';
+import { useUser } from 'providers/UserProvider';
+import { useNavigate } from 'react-router';
+import { useEffect } from 'react';
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
 const AuthLoginForm = ({ ...others }) => {
+  const { error, user, email } = useUser();
+  const nav = useNavigate();
+  useEffect(() => {
+    if (error) {
+      toastMessage(error, { isError: true });
+    }
+    if (user) {
+      nav('/');
+    }
+  }, [error, user]);
+
   const scriptedRef = useScriptRef();
   const [checked, setChecked] = useState(true);
 
@@ -50,7 +64,7 @@ const AuthLoginForm = ({ ...others }) => {
     <>
       <Formik
         initialValues={{
-          email: '',
+          email: email || '',
           password: '',
           submit: null
         }}
@@ -121,6 +135,7 @@ const AuthLoginForm = ({ ...others }) => {
                 }
                 label="Password"
                 inputProps={{}}
+                autoFocus={email ? true : false}
               />
               {touched.password && errors.password && (
                 <FormHelperText error id="standard-weight-helper-text-password-login">

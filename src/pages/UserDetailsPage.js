@@ -9,6 +9,7 @@ import {
   ListItem,
   ListItemAvatar,
   ListItemText,
+  Skeleton,
   Stack,
   Typography
 } from '@mui/material';
@@ -81,7 +82,31 @@ const UserDetailsPage = () => {
   });
 
   return (
-    <DataWidget title="User account" isLoading={isLoading} isError={error}>
+    <DataWidget
+      title="User account"
+      isLoading={isLoading}
+      isError={error}
+      customLoaders={
+        <Stack spacing={2}>
+          <Skeleton animation="wave" variant="rounded" sx={{ backgroundColor: 'white', borderRadius: 2 }} height={70} />
+          <Skeleton animation="wave" variant="rounded" sx={{ backgroundColor: 'white', borderRadius: 2 }} height={200} />
+          <Skeleton animation="wave" variant="rounded" sx={{ backgroundColor: 'white', borderRadius: 1 }} height={30} width={120} />
+          <Stack spacing={2} direction={'row'}>
+            {[1, 2, 3, 4].map((_, index) => {
+              return (
+                <Skeleton
+                  key={index}
+                  animation="wave"
+                  variant="rounded"
+                  sx={{ backgroundColor: 'white', borderRadius: 2, width: '100%' }}
+                  height={200}
+                />
+              );
+            })}
+          </Stack>
+        </Stack>
+      }
+    >
       <TitleAndSidebar
         title={`${user?.firstName} ${user?.lastName}`}
         drawerTitle={user?.profile ? 'Update Profile' : 'Create Profile'}

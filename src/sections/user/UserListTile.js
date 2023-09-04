@@ -9,6 +9,7 @@ import {
   ListItemText,
   MenuItem,
   Popover,
+  Skeleton,
   Stack,
   TableCell,
   TableRow,
@@ -186,6 +187,45 @@ const UserListTile = ({ user, selectedUser, onCheckBoxClicked, currentUserRole, 
         }
       />
     </>
+  );
+};
+
+export const UserListTileLoading = () => {
+  return (
+    <TableRow hover tabIndex={-1} role="checkbox" sx={{ p: 0, color: 'error' }}>
+      <TableCell padding="checkbox">
+        <Checkbox checked={false} onChange={() => {}} />
+      </TableCell>
+
+      <TableCell component="th" scope="row" padding="none">
+        <Tooltip title={'Profile'}>
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <div>
+              <Skeleton variant="circular" width={40} height={40} />
+            </div>
+            <Skeleton variant="text" sx={{ fontSize: '1rem', width: '100%' }} />
+          </Stack>
+        </Tooltip>
+      </TableCell>
+
+      <TableCell align="left">
+        <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      </TableCell>
+
+      <TableCell align="center">
+        <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      </TableCell>
+      <TableCell align="center">
+        <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      </TableCell>
+      <TableCell align="center">
+        <Skeleton variant="text" sx={{ fontSize: '1rem' }} />
+      </TableCell>
+
+      <TableCell align="right">
+        <Skeleton variant="rectangular" width={5} height={20} />
+      </TableCell>
+    </TableRow>
   );
 };
 

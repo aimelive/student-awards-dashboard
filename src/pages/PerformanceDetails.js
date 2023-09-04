@@ -1,4 +1,4 @@
-import { Avatar, Chip, ImageList, Stack, Typography } from '@mui/material';
+import { Avatar, Box, Chip, ImageList, Skeleton, Stack, Typography } from '@mui/material';
 
 import { Formik } from 'formik';
 import useScriptRef from 'hooks/useScriptRef';
@@ -32,7 +32,41 @@ const PerformanceDetails = () => {
 
   return (
     <Stack sx={{ backgroundColor: 'white', borderRadius: 4, p: 0, overflow: 'hidden' }}>
-      <DataWidget title="Performance" isLoading={isLoading} isError={error}>
+      <DataWidget
+        title="Performance"
+        isLoading={isLoading}
+        isError={error}
+        customLoaders={
+          <>
+            <Stack sx={{ bgcolor: 'grey.300', p: 4, py: 6 }}>
+              <Stack direction={'row'} spacing={2} alignItems={'center'}>
+                <Skeleton animation="wave" variant="circular" sx={{ backgroundColor: 'white' }} height={80} width={80} />
+                <Skeleton animation="wave" variant="rounded" sx={{ backgroundColor: 'white' }} height={30} width={400} />
+              </Stack>
+            </Stack>
+            <Box sx={{ p: 4, px: 5 }}>
+              {/* <Skeleton animation="wave" variant="rounded" height={30} /> */}
+              {/* <Box sx={{ my: 1 }} /> */}
+              <Skeleton animation="wave" variant="rounded" height={35} width={'70%'} />
+              <Box sx={{ my: 3 }} />
+              <Stack spacing={2} direction={'row'}>
+                {[1, 2, 3, 4, 5].map((_, index) => {
+                  return <Skeleton key={index} animation="wave" variant="rectangular" sx={{ width: '100%' }} height={170} />;
+                })}
+              </Stack>
+              <Box sx={{ my: 3 }} />
+              <Skeleton animation="wave" variant="rounded" height={50} sx={{ borderRadius: 2 }} />
+              <Box sx={{ my: 1.5 }} />
+              <Skeleton animation="wave" variant="rounded" height={50} sx={{ borderRadius: 2 }} />
+              <Box sx={{ my: 1.5 }} />
+              <Skeleton animation="wave" variant="rounded" height={50} sx={{ borderRadius: 2 }} />
+              <Box sx={{ my: 3 }} />
+              <Skeleton animation="wave" variant="rounded" height={50} sx={{ borderRadius: 2 }} />
+              <Box sx={{ my: 2 }} />
+            </Box>
+          </>
+        }
+      >
         <Stack sx={{ position: 'relative' }}>
           <img
             src={performance?.images[0]}

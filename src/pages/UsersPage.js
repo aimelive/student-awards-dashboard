@@ -37,6 +37,7 @@ import useScriptRef from 'hooks/useScriptRef';
 import TitleAndSidebar from 'ui-component/TitleAndSidebar';
 import { compareObj, toastMessage } from 'utils/helpers';
 import { useUser } from 'providers/UserProvider';
+import { UserListTileLoading } from 'sections/user/UserListTile';
 
 const ROLES = [
   { label: 'User', value: 'USER' },
@@ -365,7 +366,34 @@ const UsersPage = () => {
         </Formik>
       </TitleAndSidebar>
       <Card sx={{ p: 1 }}>
-        <DataWidget title="User accounts" isLoading={isLoading} isError={error} isEmpty={!users?.length}>
+        <DataWidget
+          title="User accounts"
+          isLoading={isLoading}
+          isError={error}
+          isEmpty={!users?.length}
+          customLoaders={
+            <Scrollbar>
+              <TableContainer sx={{ minWidth: 800, overflowX: 'hidden' }}>
+                <Table>
+                  <UserListHead
+                    order={order}
+                    orderBy={orderBy}
+                    headLabel={TABLE_HEAD}
+                    rowCount={users?.length}
+                    numSelected={selected.length}
+                    onRequestSort={handleRequestSort}
+                    onSelectAllClick={handleSelectAllClick}
+                  />
+                  <TableBody>
+                    <UserListTileLoading />
+                    <UserListTileLoading />
+                    <UserListTileLoading />
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Scrollbar>
+          }
+        >
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800, overflowX: 'hidden' }}>
               <Table>

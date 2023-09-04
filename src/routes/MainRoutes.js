@@ -18,7 +18,6 @@ const UtilsColor = Loadable(lazy(() => import('pages/utilities/Color')));
 // sample page routing
 const SamplePage = Loadable(lazy(() => import('pages/sample-page')));
 const UsersPage = Loadable(lazy(() => import('pages/UsersPage')));
-const ProfilesPage = Loadable(lazy(() => import('pages/ProfilesPage')));
 const UserDetailsPage = Loadable(lazy(() => import('pages/UserDetailsPage')));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -77,10 +76,6 @@ const MainRoutes = {
           element: <UserDetailsPage />
         }
       ]
-    },
-    {
-      path: 'profiles',
-      element: <ProfilesPage />
     },
     {
       path: '*',

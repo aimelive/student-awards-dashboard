@@ -17,7 +17,7 @@ import { gridSpacing } from 'store/constant';
 const Dashboard = () => {
   const [isLoading, setLoading] = useState(true);
   useEffect(() => {
-    setLoading(false);
+    setTimeout(() => setLoading(false), 3000);
   }, []);
 
   return (

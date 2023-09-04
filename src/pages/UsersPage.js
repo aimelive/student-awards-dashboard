@@ -15,6 +15,8 @@ import {
   OutlinedInput,
   Paper,
   Select,
+  Skeleton,
+  Stack,
   Table,
   TableBody,
   TableCell,
@@ -390,6 +392,9 @@ const UsersPage = () => {
                     <UserListTileLoading />
                   </TableBody>
                 </Table>
+                <Stack direction={'row'} justifyContent={'end'} sx={{ pr: 4 }}>
+                  <Skeleton height={60} width={200} />
+                </Stack>
               </TableContainer>
             </Scrollbar>
           }
